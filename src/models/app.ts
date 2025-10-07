@@ -1,5 +1,6 @@
 import express, { Application } from "express"
 import cors from "cors"
+import morgan from "morgan"
 
 import { pingRouter } from '../routes/ping.router'
 
@@ -9,7 +10,7 @@ export class App {
   private port = 3000
   private apiVersion = "v1"
   private apiPaths = {
-    ping: `/api/${ this.apiVersion }/ping`
+    ping: `/api/${this.apiVersion}/ping`
   }
 
   constructor() {
@@ -23,6 +24,7 @@ export class App {
     // json parser
     this.app.use(express.json())
     this.app.use(cors())
+    this.app.use(morgan())
   }
 
   // routes invocation
